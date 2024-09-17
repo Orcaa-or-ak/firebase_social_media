@@ -87,7 +87,7 @@ export const Post = (props: Props) => {
 			);
 		};
 		getLikes();
-	}, []);
+	}, [likeDoc]);
 
 	return (
 		<div>

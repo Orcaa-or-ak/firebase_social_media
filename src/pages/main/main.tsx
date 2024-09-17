@@ -27,7 +27,7 @@ export const Main = () => {
 		};
 
 		getPosts();
-	}, []);
+	}, [postRef]);
 
 	return (
 		<div>
