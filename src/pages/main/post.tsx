@@ -77,7 +77,7 @@ export const Post = (props: Props) => {
 
 	useEffect(() => {
 		getLikes();
-	}, [getLikes]);
+	}, []);
 
 	return (
 		<div>
