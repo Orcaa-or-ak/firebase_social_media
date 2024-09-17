@@ -24,7 +24,7 @@ export const Main = () => {
 
 	useEffect(() => {
 		getPosts();
-	}, []);
+	}, [getPosts]);
 
 	return (
 		<div>
