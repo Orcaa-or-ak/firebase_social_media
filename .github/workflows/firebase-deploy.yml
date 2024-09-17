@@ -1,9 +1,9 @@
-name: Triển khai Firebase
+name: Deploy Firebase
 
 on:
   push:
     branches:
-      - main  # Thiết lập trigger để hành động chạy khi có code mới được đẩy lên nhánh "main"
+      - main
 
 jobs:
   build_and_deploy:
@@ -18,7 +18,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '18'  # Hoặc phiên bản Node.js mà dự án của bạn yêu cầu
+        node-version: '18'
 
     # Step 3:
     - name: Setup Firebase

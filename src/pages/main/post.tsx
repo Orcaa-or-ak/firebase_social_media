@@ -8,7 +8,7 @@ import {
 	doc,
 } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Post as IPost } from "./main";
+import { Posts as IPost } from "./main";
 import { db, auth } from "../../config/firebase";
 import { useEffect, useState } from "react";
 import { BiLike, BiDislike } from "react-icons/bi";
@@ -77,7 +77,7 @@ export const Post = (props: Props) => {
 
 	useEffect(() => {
 		getLikes();
-	}, []);
+	}, [getLikes]);
 
 	return (
 		<div>
