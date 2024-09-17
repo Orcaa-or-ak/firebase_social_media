@@ -32,14 +32,12 @@ export const Post = (props: Props) => {
 
 	const likeDoc = query(likeRef, where("postId", "==", post.id));
 
-	const getLikes = async () => {
-		const data = await getDocs(likeDoc);
-		setLikes(data.docs.map((doc) => ({ userId: doc.data().userId, likeId: doc.id })) as Like[]);
-	};
-
 	const addLike = async () => {
 		try {
-			const newDoc = await addDoc(likeRef, { userId: user?.uid, postId: post.id });
+			const newDoc = await addDoc(likeRef, {
+				userId: user?.uid,
+				postId: post.id,
+			});
 			if (user) {
 				setLikes((prev) =>
 					prev
@@ -66,7 +64,10 @@ export const Post = (props: Props) => {
 			await deleteDoc(likeToDelete);
 
 			if (user) {
-				setLikes((prev) => prev && prev.filter((like) => like.likeId !== likeId));
+				setLikes(
+					(prev) =>
+						prev && prev.filter((like) => like.likeId !== likeId)
+				);
 			}
 		} catch (error) {
 			console.log(error);
@@ -76,8 +77,17 @@ export const Post = (props: Props) => {
 	const hasUserLiked = likes?.find((like) => like.userId === user?.uid);
 
 	useEffect(() => {
+		const getLikes = async () => {
+			const data = await getDocs(likeDoc);
+			setLikes(
+				data.docs.map((doc) => ({
+					userId: doc.data().userId,
+					likeId: doc.id,
+				})) as Like[]
+			);
+		};
 		getLikes();
-	}, [getLikes]);
+	}, []);
 
 	return (
 		<div>

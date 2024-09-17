@@ -15,20 +15,25 @@ export const Main = () => {
 	const [postList, setPostList] = useState<Posts[] | null>(null);
 	const postRef = collection(db, "posts");
 
-	const getPosts = async () => {
-		const data = await getDocs(postRef);
-		setPostList(
-			data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Posts[]
-		);
-	};
-
 	useEffect(() => {
+		const getPosts = async () => {
+			const data = await getDocs(postRef);
+			setPostList(
+				data.docs.map((doc) => ({
+					...doc.data(),
+					id: doc.id,
+				})) as Posts[]
+			);
+		};
+
 		getPosts();
-	}, [getPosts]);
+	}, []);
 
 	return (
 		<div>
-			{postList?.map((post) => <Post post={post}/>)}
+			{postList?.map((post) => (
+				<Post post={post} />
+			))}
 		</div>
 	);
 };
