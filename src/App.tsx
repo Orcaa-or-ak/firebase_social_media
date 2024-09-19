@@ -1,6 +1,5 @@
 //https://fir-social-media-f68d6.web.app/
 
-import React from "react";
 import "./App.css";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
