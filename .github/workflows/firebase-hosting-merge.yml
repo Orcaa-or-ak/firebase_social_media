@@ -2,15 +2,35 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
+
 on:
   push:
     branches:
       - main
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Check out the repository
       - uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js (if your project requires it)
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'  # or any version your project requires
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Build the project (for React, Vue, Angular, etc.)
+      # Add this step to build the project before deploying
+      - name: Build project
+        run: npm run build  # Use your build command, for example, React uses `npm run build`
+
+      # Step 5: Deploy to Firebase Hosting
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}

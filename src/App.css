@@ -102,5 +102,5 @@ body {
 .SubmitButton:hover {
   background-color: rgb(48, 89, 151);
   color: white;
-  /* cursor: pointer; */
+  cursor: pointer;
 }
